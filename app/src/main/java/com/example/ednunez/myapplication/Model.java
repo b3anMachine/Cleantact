@@ -13,10 +13,9 @@ public class Model {
 
     private final MainActivity view;
 
-    public Model(MainActivity view){
+    public Model(MainActivity view) {
         this.view = view;
     }
-
 
     public ArrayList<Contact> getContacts() {
         ArrayList<Contact> contacts = new ArrayList<Contact>();
@@ -28,7 +27,7 @@ public class Model {
         String selectionArgs[] = {"1"};
         String sortOrder = ContactsContract.PhoneLookup.DISPLAY_NAME;
 
-        Cursor people =  view.getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, projection, selection, selectionArgs, sortOrder);
+        Cursor people = view.getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, projection, selection, selectionArgs, sortOrder);
 
         while (people.moveToNext()) {
             String name = people.getString(
@@ -46,7 +45,9 @@ public class Model {
         return contacts;
     }
 
-    public void deleteContact(Uri uri){
-        view.getContentResolver().delete(uri, null, null);
+    public boolean deleteContact(Contact contact) {
+        Uri uri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI, contact.getLookupKey());
+        int rowsDeleted = view.getContentResolver().delete(uri, null, null);
+        return rowsDeleted > 0;
     }
 }

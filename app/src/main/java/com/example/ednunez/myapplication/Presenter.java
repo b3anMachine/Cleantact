@@ -1,6 +1,6 @@
 package com.example.ednunez.myapplication;
 
-import android.net.Uri;
+import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 
@@ -10,19 +10,30 @@ import java.util.ArrayList;
 public class Presenter {
 
     private final Model model;
+    private final MainActivity view;
     private final ArrayList<Contact> contacts;
+    private final ArrayAdapter<Contact> adapter;
 
-    public ArrayList<Contact> getContacts() {
-        return contacts;
-    }
-
-    public Presenter(MainActivity view){
+    public Presenter(MainActivity view) {
+        this.view = view;
         model = new Model(view);
         contacts = model.getContacts();
+        adapter = new ArrayAdapter<Contact>(view, R.layout.item, R.id.helloText, contacts);
     }
 
-    public void deleteContact(Uri uri){
-        model.deleteContact(uri);
+    public void deleteContact(Contact contact) {
+        boolean success = model.deleteContact(contact);
+        if (success) {
+            adapter.notifyDataSetChanged();
+        }
     }
 
+    public void removeFirstObjectInAdapter() {
+        contacts.remove(0);
+        adapter.notifyDataSetChanged();
+    }
+
+    public ArrayAdapter<Contact> getAdapter() {
+        return adapter;
+    }
 }
