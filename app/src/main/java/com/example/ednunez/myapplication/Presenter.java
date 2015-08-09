@@ -23,9 +23,8 @@ public class Presenter {
 
     public void deleteContact(Contact contact) {
         boolean success = model.deleteContact(contact);
-        if (success) {
+        if (success)
             adapter.notifyDataSetChanged();
-        }
     }
 
     public void removeFirstObjectInAdapter() {

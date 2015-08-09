@@ -39,6 +39,8 @@ public class Model {
             String lookupKey = people.getString(
                     people.getColumnIndex(ContactsContract.PhoneLookup.LOOKUP_KEY));
 
+           // InputStream photo = ContactsContract.Contacts.openContactPhotoInputStream(view.getContentResolver(), ContactsContract.Contacts.CONTENT_URI, true);
+
             contacts.add(
                     new Contact(lookupKey, name, lastContacted));
         }
