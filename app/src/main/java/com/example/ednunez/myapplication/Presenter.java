@@ -18,7 +18,7 @@ public class Presenter {
         this.view = view;
         model = new Model(view);
         contacts = model.getContacts();
-        adapter = new ArrayAdapter<Contact>(view, R.layout.item, R.id.helloText, contacts);
+        adapter = new ArrayAdapter<Contact>(view, R.layout.contactview, R.id.hello, contacts);
     }
 
     public void deleteContact(Contact contact) {

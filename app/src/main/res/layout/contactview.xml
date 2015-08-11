@@ -7,18 +7,22 @@
 
     <TextView
         android:id="@+id/hello"
-        android:textSize="25sp"
-        android:textColor="@android:color/white"
-        android:background="#E339"
-        android:gravity="center"
+        android:background="@android:color/white"
         tools:text="@string/hello_world"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal|bottom"
+        />
 
     <ImageView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:src="@drawable/photo"/>
+        android:id="@+id/imageView"
+        android:layout_width="101dp"
+        android:layout_height="46dp"
+        android:src="@drawable/photo"
+        android:layout_gravity="center_horizontal|top" />
+
 
     <View
         android:id="@+id/item_swipe_left_indicator"
