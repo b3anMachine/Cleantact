@@ -21,6 +21,15 @@ class Contact {
         return lookupKey;
     }
 
+    public long getLastContacted() {
+        return lastContacted;
+    }
+
+    public String getName() {
+
+        return name;
+    }
+
     public String toString() {
         String string = name;
         long daysAgo = TimeUnit.MILLISECONDS.toDays(

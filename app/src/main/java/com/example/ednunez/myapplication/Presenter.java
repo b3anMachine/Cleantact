@@ -12,13 +12,15 @@ public class Presenter {
     private final Model model;
     private final MainActivity view;
     private final ArrayList<Contact> contacts;
-    private final ArrayAdapter<Contact> adapter;
+    //private final ArrayAdapter<Contact> adapter;
+    private final ContactViewAdapter adapter;
 
     public Presenter(MainActivity view) {
         this.view = view;
         model = new Model(view);
         contacts = model.getContacts();
-        adapter = new ArrayAdapter<Contact>(view, R.layout.contactview, R.id.hello, contacts);
+       // adapter = new ArrayAdapter<Contact>(view, R.layout.contactview, R.id.contact_info, contacts);
+        adapter = new ContactViewAdapter(view, R.layout.contactview, R.id.contact_info, contacts);
     }
 
     public void deleteContact(Contact contact) {

@@ -6,7 +6,7 @@
     android:layout_height="170dp">
 
     <TextView
-        android:id="@+id/hello"
+        android:id="@+id/contact_info"
         android:background="@android:color/white"
         tools:text="@string/hello_world"
         android:layout_width="match_parent"
