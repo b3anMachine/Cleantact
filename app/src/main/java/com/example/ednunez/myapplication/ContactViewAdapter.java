@@ -46,7 +46,9 @@ public class ContactViewAdapter extends ArrayAdapter {
         String timeUnit = null;
         long timeValue = 0;
 
-        if(daysLastContacted >= 730){
+        if(daysLastContacted > 365*42)
+            contactInfoText += "never";
+        else if(daysLastContacted >= 730){
             timeUnit = "years";
             timeValue = daysLastContacted / 365;
         }
