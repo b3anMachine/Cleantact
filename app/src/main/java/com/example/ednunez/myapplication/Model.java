@@ -1,9 +1,13 @@
 package com.example.ednunez.myapplication;
 
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.ContactsContract;
 
+import java.io.BufferedInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -22,7 +26,8 @@ public class Model {
 
         String[] projection = {ContactsContract.PhoneLookup.DISPLAY_NAME,
                 ContactsContract.PhoneLookup.LAST_TIME_CONTACTED,
-                ContactsContract.PhoneLookup.LOOKUP_KEY};
+                ContactsContract.PhoneLookup.LOOKUP_KEY,
+                ContactsContract.PhoneLookup._ID};
         String selection = ContactsContract.PhoneLookup.IN_VISIBLE_GROUP + " = ?";
         String selectionArgs[] = {"1"};
         String sortOrder = ContactsContract.PhoneLookup.DISPLAY_NAME;
@@ -39,10 +44,18 @@ public class Model {
             String lookupKey = people.getString(
                     people.getColumnIndex(ContactsContract.PhoneLookup.LOOKUP_KEY));
 
-           // InputStream photo = ContactsContract.Contacts.openContactPhotoInputStream(view.getContentResolver(), ContactsContract.Contacts.CONTENT_URI, true);
+            long contactID = people.getLong(
+                    people.getColumnIndex(ContactsContract.PhoneLookup._ID));
 
-            contacts.add(
-                    new Contact(lookupKey, name, lastContacted));
+
+            Uri my_contact_Uri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_URI, String.valueOf(contactID));
+            InputStream photo_stream = ContactsContract.Contacts.openContactPhotoInputStream(view.getContentResolver(), my_contact_Uri, true);
+            BufferedInputStream buf = new BufferedInputStream(photo_stream);
+            if(photo_stream != null);
+                Bitmap photo = BitmapFactory.decodeStream(photo_stream);
+
+
+            contacts.add(new Contact(lookupKey, name, lastContacted, photo));
         }
         return contacts;
     }

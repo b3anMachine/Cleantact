@@ -1,5 +1,7 @@
 package com.example.ednunez.myapplication;
 
+import android.graphics.Bitmap;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -11,10 +13,17 @@ class Contact {
     private String name;
     private long lastContacted;
 
-    Contact(String lookupKey, String name, long lastContacted) {
+    public Bitmap getPhoto() {
+        return photo;
+    }
+
+    private Bitmap photo;
+
+    Contact(String lookupKey, String name, long lastContacted, Bitmap photo) {
         this.lookupKey = lookupKey;
         this.name = name;
         this.lastContacted = lastContacted;
+        this.photo = photo;
     }
 
     String getLookupKey() {
