@@ -1,5 +1,4 @@
-package com.example.ednunez.myapplication;
-
+package org.beans.cleantact;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

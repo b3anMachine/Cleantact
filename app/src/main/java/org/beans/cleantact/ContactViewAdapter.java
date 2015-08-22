@@ -1,4 +1,4 @@
-package com.example.ednunez.myapplication;
+package org.beans.cleantact;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -46,7 +46,7 @@ public class ContactViewAdapter extends ArrayAdapter {
         String timeUnit = null;
         long timeValue = 0;
 
-        if(daysLastContacted > 365*42)
+        if(contact.getLastContacted() == 0)
             contactInfoText += "never";
         else if(daysLastContacted >= 730){
             timeUnit = "years";
@@ -60,13 +60,12 @@ public class ContactViewAdapter extends ArrayAdapter {
             timeUnit = "weeks";
             timeValue = daysLastContacted / 7;
         }
-        else if(daysLastContacted >= 2)
-            timeUnit = "days";
-        else if(daysLastContacted >= 1)
-            contactInfoText += "yesterday";
-        else if(daysLastContacted >= 0)
-            contactInfoText += "today";
-
+        else if(daysLastContacted >= 7){
+            contactInfoText += "a week ago";
+        }
+        else  {
+            contactInfoText += "within a week";
+        }
         if(timeUnit != null)
             contactInfoText = name + "\n Last called: " + "\n" + timeValue + " " + timeUnit + " ago";
 

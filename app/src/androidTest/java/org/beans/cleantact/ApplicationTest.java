@@ -1,4 +1,4 @@
-package com.example.ednunez.myapplication;
+package org.example.ednunez.cleantact;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

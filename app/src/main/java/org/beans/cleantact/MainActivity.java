@@ -1,4 +1,4 @@
-package com.example.ednunez.myapplication;
+package org.beans.cleantact;
 
 import android.app.Activity;
 import android.os.Bundle;
